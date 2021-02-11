@@ -5,6 +5,7 @@ public class mailMerge {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		// Define scanner, prompts/outputs, inputs, and booleans
 		Scanner scan = new Scanner(System.in);
 		boolean correctInfo = false, validResponse = false;
 		String firstName, lastName, houseNum, streetName, response;
@@ -17,7 +18,9 @@ public class mailMerge {
 		String promptText4 = "Please enter your street: ";
 		String promptText5 = "Is this address correct? ";
 		
+		// Will loop data input until response says yes
 		while(!correctInfo) {
+			// Input data
 			System.out.print(promptText1);
 			firstName = scan.nextLine();
 			
@@ -30,11 +33,12 @@ public class mailMerge {
 			System.out.print(promptText4);
 			streetName = scan.nextLine();
 			
+			// Ask if info is correct
 			System.out.println(replaceText1.replace("<firstName>", firstName).replace("<lastName>", lastName));
 			System.out.println(replaceText2.replace("<houseNumber>", houseNum).replace("<street>", streetName));
 			
+			// Will loop until response is "yes" or "no"
 			validResponse = false;
-			
 			while(!validResponse) {
 				System.out.print(promptText5);
 				response = scan.nextLine();
