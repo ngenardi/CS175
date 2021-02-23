@@ -6,6 +6,9 @@ public class BankProgram {
 	private float balance = 0.00f;
 	DecimalFormat moneyFormat = new DecimalFormat("##.00");
 	
+	public BankProgram(float startBal){
+		balance = startBal;
+	}
 	void Deposit(double money){
 		balance += money;
 		System.out.println("You have deposited $"+ moneyFormat.format(money) + ".\nYour new balanse is: $" + moneyFormat.format(balance));
@@ -26,8 +29,8 @@ public class BankProgram {
 		// Define variables and objects
 		Scanner scan = new Scanner(System.in);
 		
-		BankProgram Bob = new BankProgram();
-		BankProgram Mike = new BankProgram();
+		BankProgram Bob = new BankProgram(1000.00f);
+		BankProgram Mike = new BankProgram(500.00f);
 		
 		boolean validInput = false;
 		boolean doneWithActions = false;
