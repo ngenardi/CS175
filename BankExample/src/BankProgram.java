@@ -11,12 +11,23 @@ public class BankProgram {
 	}
 	void Deposit(double money){
 		balance += money;
-		System.out.println("You have deposited $"+ moneyFormat.format(money) + ".\nYour new balanse is: $" + moneyFormat.format(balance));
+		System.out.println("You have deposited $"+ moneyFormat.format(money) + ".\nYour new balance is: $" + moneyFormat.format(balance));
 	}
 	
 	void Withdraw(double money) {
-		balance -= money;
-		System.out.println("You have withdrawn $"+ moneyFormat.format(money) + ".\nYour new balanse is: $" + moneyFormat.format(balance));
+		if (money <= balance) {
+			balance -= money;
+			System.out.println("You have withdrawn $"+ moneyFormat.format(money) + ".\nYour new balance is: $" + moneyFormat.format(balance));
+		}
+		else {
+			System.out.println("Insufficient funds. Your balance is: $" + moneyFormat.format(balance));
+		}
+	}
+	
+	void GetInterest (double interestPercent) {
+		double interest = interestPercent * balance;
+		balance += interest;
+		System.out.println("You have gained $" + moneyFormat.format(interest) + ".\nYour new balance is: $" + moneyFormat.format(balance));
 	}
 	
 	void ViewBalance() {
@@ -38,6 +49,7 @@ public class BankProgram {
 		String action = "";
 		String yesOrNo = "";
 		double money = 0;
+		double interestPercent = 0;
 		
 		// Account Selection
 		while (!validInput) {
@@ -55,33 +67,48 @@ public class BankProgram {
 		if (accountName.toLowerCase().equals("bob")) {
 			System.out.println("Welcome Bob");
 			while(!doneWithActions) {
-				System.out.println("Would you like to deposit, withdraw, or view balance?");
-				action = scan.next();
-				
-				if(action.toLowerCase().equals("deposit")) {
-					System.out.println("How much money would you like to deposit?");
-					money = scan.nextDouble();
-					Bob.Deposit(money);
-				}
-				
-				else if(action.toLowerCase().equals("withdraw")) {
-					System.out.println("How much money would you like to withdraw?");
-					money = scan.nextDouble();
-					Bob.Withdraw(money);
-				}
-				
-				else if (action.toLowerCase().equals("view balance")) {
-					Bob.ViewBalance();
-				}
-				
-				else {
-					System.out.println("Invalid input.");
+				validInput = false;
+				while(!validInput) {
+					System.out.println("Would you like to deposit, withdraw, get interest, or view balance?");
+					action = scan.nextLine();
+					
+					if(action.toLowerCase().equals("deposit")) {
+						System.out.println("How much money would you like to deposit?");
+						money = scan.nextDouble();
+						scan.nextLine();
+						Bob.Deposit(money);
+						validInput = true;
+					}
+					
+					else if(action.toLowerCase().equals("withdraw")) {
+						System.out.println("How much money would you like to withdraw?");
+						money = scan.nextDouble();
+						scan.nextLine();
+						Bob.Withdraw(money);
+						validInput = true;
+					}
+					else if (action.toLowerCase().equals("get interest")) {
+						System.out.println("What is the interest rate?");
+						interestPercent = scan.nextDouble();
+						scan.nextLine();
+						Bob.GetInterest(interestPercent);
+						validInput = true;
+					}
+					
+					else if (action.toLowerCase().equals("view balance")) {
+						Bob.ViewBalance();
+						validInput = true;
+					}
+					
+					else {
+						System.out.println("Invalid input.");
+					}
 				}
 				
 				validInput = false;
 				while(!validInput) {
 					System.out.println("Would you like to perform another action?");
-					yesOrNo = scan.next();
+					yesOrNo = scan.nextLine();
 					if(yesOrNo.toLowerCase().equals("yes")) {
 						validInput = true;
 					}
@@ -100,33 +127,48 @@ public class BankProgram {
 		else if (accountName.toLowerCase().equals("mike")) {
 			System.out.println("Welcome Mike");
 			while(!doneWithActions) {
-				System.out.println("Would you like to deposit, withdraw, or view balance?");
-				action = scan.next();
-				
-				if(action.toLowerCase().equals("deposit")) {
-					System.out.println("How much money would you like to deposit?");
-					money = scan.nextDouble();
-					Mike.Deposit(money);
-				}
-				
-				else if(action.toLowerCase().equals("withdraw")) {
-					System.out.println("How much money would you like to withdraw?");
-					money = scan.nextDouble();
-					Mike.Withdraw(money);
-				}
-				
-				else if (action.toLowerCase().equals("view balance")) {
-					Mike.ViewBalance();
-				}
-				
-				else {
-					System.out.println("Invalid input.");
+				validInput = false;
+				while(!validInput) {
+					System.out.println("Would you like to deposit, withdraw, get interest, or view balance?");
+					action = scan.nextLine();
+					
+					if(action.toLowerCase().equals("deposit")) {
+						System.out.println("How much money would you like to deposit?");
+						money = scan.nextDouble();
+						scan.nextLine();
+						Mike.Deposit(money);
+						validInput = true;
+					}
+					
+					else if(action.toLowerCase().equals("withdraw")) {
+						System.out.println("How much money would you like to withdraw?");
+						money = scan.nextDouble();
+						scan.nextLine();
+						Mike.Withdraw(money);
+						validInput = true;
+					}
+					else if (action.toLowerCase().equals("get interest")) {
+						System.out.println("What is the interest rate?");
+						interestPercent = scan.nextDouble();
+						scan.nextLine();
+						Mike.GetInterest(interestPercent);
+						validInput = true;
+					}
+					
+					else if (action.toLowerCase().equals("view balance")) {
+						Mike.ViewBalance();
+						validInput = true;
+					}
+					
+					else {
+						System.out.println("Invalid input.");
+					}
 				}
 				
 				validInput = false;
 				while(!validInput) {
 					System.out.println("Would you like to perform another action?");
-					yesOrNo = scan.next();
+					yesOrNo = scan.nextLine();
 					if(yesOrNo.toLowerCase().equals("yes")) {
 						validInput = true;
 					}
@@ -136,10 +178,10 @@ public class BankProgram {
 						System.out.println("Goodbye!");
 					}
 					else {
-						System.out.println("Invalid input.");
-					}
-				}	
+						System.out.println("Invalid  input." );
+					 }
+				}	 
 			}
-		}	
-	}
+		 }	
+	} 
 }
