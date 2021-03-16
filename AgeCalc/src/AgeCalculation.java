@@ -13,15 +13,17 @@ public class AgeCalculation {
 		// Defining current date
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		LocalDate now = LocalDate.now();
-		int currentMonth = Integer.parseInt(dtf.format(now).substring(0, 2));
-		int currentDay = Integer.parseInt(dtf.format(now).substring(3,5));
-		int currentYear = Integer.parseInt(dtf.format(now).substring(6));
+		String[] splitCurrent = dtf.format(now).split("/");
+		int currentMonth = Integer.parseInt(splitCurrent[0]);
+		int currentDay = Integer.parseInt(splitCurrent[1]);
+		int currentYear = Integer.parseInt(splitCurrent[2]);
 		
 		// Defining birthdate
 		String birthdate = JOptionPane.showInputDialog("Enter your birthdate (MM/DD/YYYY):");
-		int birthMonth = Integer.parseInt(birthdate.substring(0, 2));
-		int birthDay = Integer.parseInt(birthdate.substring(3,5));
-		int birthYear = Integer.parseInt(birthdate.substring(6));
+		String[] splitBirthdate = birthdate.split("/");
+		int birthMonth = Integer.parseInt(splitBirthdate[0]);
+		int birthDay = Integer.parseInt(splitBirthdate[1]);
+		int birthYear = Integer.parseInt(splitBirthdate[2]);
 		
 		// Calculating age
 		int ageYears = currentYear - birthYear;
