@@ -30,12 +30,6 @@ public class AgeCalculation {
 		int ageMonths = currentMonth - birthMonth;
 		int ageDays = currentDay - birthDay;
 		
-		// Correct for Months
-		if(currentMonth<birthMonth) {
-			ageYears--;
-			ageMonths+=12; 
-		}
-		
 		// Correct for Days
 		if(currentDay<birthDay) {
 			ageMonths--;
@@ -47,6 +41,11 @@ public class AgeCalculation {
 			}
 		}
 		
+		// Correct for Months
+		if(currentMonth<birthMonth||ageMonths<0) {
+			ageYears--;
+			ageMonths+=12; 
+		}
 		
 		JOptionPane.showMessageDialog(null, "You are " + ageYears + " year(s), " + ageMonths + " month(s), and " + ageDays + " day(s) old.");
 	}
