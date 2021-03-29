@@ -1,13 +1,13 @@
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class Interest {
+public class InterestProject {
 	
 	private float balance = 0.00f;
 	static DecimalFormat moneyFormat = new DecimalFormat("##.00");
 	
-	public Interest(float startBal){
-		balance = startBal;
+	InterestProject(float newBal) {
+		balance=newBal;
 	}
 	
 	void GetInterest (double interestPercent) {
@@ -22,19 +22,28 @@ public class Interest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
+		float startBal, endBal;
+		double interestRate;
 		
-		System.out.print("Input the starting balance: ");
-		float startBal = scan.nextFloat();
-		scan.nextLine();
-		Interest BankAccount = new Interest(startBal);
+		do {
+			System.out.print("Input the starting balance: ");
+			startBal = scan.nextFloat();
+			scan.nextLine();
+		} while(!scan.hasNextFloat());
 		
-		System.out.print("Input the interest rate as a decimal: ");
-		double interestRate = scan.nextDouble();
-		scan.nextLine();
+		InterestProject BankAccount = new InterestProject(startBal); 
 		
-		System.out.print("Input the target balance: ");
-		float endBal = scan.nextFloat();
-		scan.nextLine();
+		do {
+			System.out.print("Input the interest rate as a decimal: ");
+			interestRate = scan.nextDouble();
+			scan.nextLine();
+		} while(!scan.hasNextDouble());
+		
+		do {
+			System.out.print("Input the target balance: ");
+			endBal = scan.nextFloat();
+			scan.nextLine();
+		} while(!scan.hasNextFloat());
 		
 		int time = 0;
 		while(BankAccount.GetBalance()<endBal) {
