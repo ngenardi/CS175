@@ -22,28 +22,28 @@ public class InterestProject {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
-		float startBal, endBal;
-		double interestRate;
+		float startBal = 0, endBal = 0;
+		double interestRate = 0;
 		
-		do {
+		while(!scan.hasNextFloat()) {
 			System.out.print("Input the starting balance: ");
 			startBal = scan.nextFloat();
 			scan.nextLine();
-		} while(!scan.hasNextFloat());
+		} 
 		
 		InterestProject BankAccount = new InterestProject(startBal); 
 		
-		do {
+		while(!scan.hasNextDouble()) {
 			System.out.print("Input the interest rate as a decimal: ");
 			interestRate = scan.nextDouble();
 			scan.nextLine();
-		} while(!scan.hasNextDouble());
+		} 
 		
-		do {
+		while(!scan.hasNextFloat()) {
 			System.out.print("Input the target balance: ");
 			endBal = scan.nextFloat();
 			scan.nextLine();
-		} while(!scan.hasNextFloat());
+		}
 		
 		int time = 0;
 		while(BankAccount.GetBalance()<endBal) {
